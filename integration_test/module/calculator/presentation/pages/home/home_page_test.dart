@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:intergration_test/app/module/calculator/presentation/pages/home/home_page.dart';
+import 'package:intergration_test/app/module/calculator/presentation/pages/home/widgets/calculator_button_widget.dart';
 import 'package:intergration_test/main.dart' as app;
 
 void main() {
@@ -47,98 +48,105 @@ void main() {
     final txtResultText = txtResult.evaluate().single.widget as Text;
     expect(txtResultText.data, '0');
   });
-  testWidgets('57 * 17 = 969', (WidgetTester tester) async {
-    await _openCalculator(tester);
 
-    final btnCalculator_1 = find.descendant(
-        of: find.byKey(const Key('btnCalculator_1')), matching: find.text("1"));
-    final btnCalculator_7 = find.descendant(
-        of: find.byKey(const Key('btnCalculator_7')), matching: find.text("7"));
-    final btnCalculator_5 = find.descendant(
-        of: find.byKey(const Key('btnCalculator_5')), matching: find.text("5"));
-    final btnCalculatorMultiply = find.descendant(
-        of: find.byKey(const Key('btnCalculator_multiply')),
-        matching: find.text("*"));
-    final btnCalculatorEqual = find.descendant(
-        of: find.byKey(const Key('btnCalculatorEqual')),
-        matching: find.text("="));
-    final btnCalculatorClear = find.descendant(
-        of: find.byKey(const Key('btnCalculatorClear')),
-        matching: find.text("C"));
+  group('Multiply Test', () {
+    testWidgets('57 * 17 = 969', (WidgetTester tester) async {
+      await _openCalculator(tester);
 
-    final txtResult = find.descendant(
-        of: find.byKey(const Key('txtResult')), matching: find.byType(Text));
+      final btnCalculator_1 = find.widgetWithText(CalculatorButtonWidget, '1');
+      final btnCalculator_7 = find.widgetWithText(CalculatorButtonWidget, '7');
+      final btnCalculator_5 = find.widgetWithText(CalculatorButtonWidget, '5');
+      final btnCalculatorMultiply =
+          find.widgetWithText(CalculatorButtonWidget, '*');
+      final btnCalculatorEqual =
+          find.widgetWithText(CalculatorButtonWidget, '=');
 
-    expect(find.byType(HomePage), findsOneWidget);
-    expect(btnCalculator_1, findsOneWidget);
-    expect(btnCalculator_7, findsOneWidget);
-    expect(txtResult, findsOneWidget);
-    var txtResultText = txtResult.evaluate().single.widget as Text;
-    expect(txtResultText.data, '0');
-    await _tap(tester, btnCalculator_5);
-    await Future.delayed(const Duration(seconds: 1));
-    await _tap(tester, btnCalculator_7);
-    await Future.delayed(const Duration(seconds: 1));
-    await _tap(tester, btnCalculatorMultiply);
-    await Future.delayed(const Duration(seconds: 1));
-    await _tap(tester, btnCalculator_1);
-    await Future.delayed(const Duration(seconds: 1));
-    await _tap(tester, btnCalculator_7);
-    await Future.delayed(const Duration(seconds: 1));
-    await _tap(tester, btnCalculatorEqual);
-    await Future.delayed(const Duration(seconds: 1));
-    await tester.pump();
-    txtResultText = txtResult.evaluate().single.widget as Text;
-    expect(txtResultText.data, '969');
-    await _tap(tester, btnCalculatorClear);
-    await Future.delayed(const Duration(seconds: 1));
-    await tester.pump();
-    txtResultText = txtResult.evaluate().single.widget as Text;
-    expect(txtResultText.data, '0');
+      final btnCalculatorClear =
+          find.widgetWithText(CalculatorButtonWidget, 'C');
+
+      final txtResult = find.descendant(
+          of: find.byKey(const Key('txtResult')), matching: find.byType(Text));
+
+      var txtResultText = txtResult.evaluate().single.widget as Text;
+
+      await _tap(tester, btnCalculator_5);
+      await _tap(tester, btnCalculator_7);
+      await _tap(tester, btnCalculatorMultiply);
+      await _tap(tester, btnCalculator_1);
+      await _tap(tester, btnCalculator_7);
+      await _tap(tester, btnCalculatorEqual);
+      await tester.pump();
+
+      txtResultText = txtResult.evaluate().single.widget as Text;
+      expect(txtResultText.data, '969');
+      await _tap(tester, btnCalculatorClear);
+
+      await tester.pump();
+      txtResultText = txtResult.evaluate().single.widget as Text;
+      expect(txtResultText.data, '0');
+    });
   });
 
-  testWidgets('3 + 38 = 41', (WidgetTester tester) async {
-    await _openCalculator(tester);
+  group('Sum Test', () {
+    testWidgets('3 + 38 = 41', (WidgetTester tester) async {
+      await _openCalculator(tester);
 
-    final btnCalculatorAdd = find.descendant(
-        of: find.byKey(const Key('btnCalculator_add')),
-        matching: find.text("+"));
-    final btnCalculatorEqual = find.descendant(
-        of: find.byKey(const Key('btnCalculatorEqual')),
-        matching: find.text("="));
-    final btnCalculator_3 = find.descendant(
-        of: find.byKey(const Key('btnCalculator_3')), matching: find.text("3"));
-    final btnCalculator_8 = find.descendant(
-        of: find.byKey(const Key('btnCalculator_8')), matching: find.text("8"));
+      final btnCalculatorAdd = find.widgetWithText(CalculatorButtonWidget, '+');
+      final btnCalculatorEqual =
+          find.widgetWithText(CalculatorButtonWidget, '=');
+      final btnCalculator_3 = find.widgetWithText(CalculatorButtonWidget, '3');
+      final btnCalculator_8 = find.widgetWithText(CalculatorButtonWidget, '8');
 
-    final txtResult = find.descendant(
-        of: find.byKey(const Key('txtResult')), matching: find.byType(Text));
+      final txtResult = find.descendant(
+          of: find.byKey(const Key('txtResult')), matching: find.byType(Text));
 
-    expect(find.byType(HomePage), findsOneWidget);
-    expect(btnCalculatorAdd, findsOneWidget);
-    expect(btnCalculator_3, findsOneWidget);
-    expect(txtResult, findsOneWidget);
+      await _tap(tester, btnCalculator_3);
+      await _tap(tester, btnCalculatorAdd);
+      await _tap(tester, btnCalculator_8);
+      await _tap(tester, btnCalculator_3);
 
-    await _tap(tester, btnCalculator_3);
-    await Future.delayed(const Duration(seconds: 1));
-    await _tap(tester, btnCalculatorAdd);
-    await Future.delayed(const Duration(seconds: 1));
-    await _tap(tester, btnCalculator_8);
-    await Future.delayed(const Duration(seconds: 1));
-    await _tap(tester, btnCalculator_3);
-    await Future.delayed(const Duration(seconds: 1));
+      await tester.pump();
+      var txtResultText = txtResult.evaluate().single.widget as Text;
+      expect(txtResultText.data, '83');
 
-    await tester.pump();
-    var txtResultText = txtResult.evaluate().single.widget as Text;
-    expect(txtResultText.data, '83');
+      await _tap(tester, btnCalculatorEqual);
 
-    await Future.delayed(const Duration(seconds: 1));
-    await _tap(tester, btnCalculatorEqual);
+      await tester.pump();
 
-    await Future.delayed(const Duration(seconds: 1));
+      txtResultText = txtResult.evaluate().single.widget as Text;
 
-    await tester.pump();
-    txtResultText = txtResult.evaluate().single.widget as Text;
-    expect(txtResultText.data, '86');
+      expect(txtResultText.data, '86');
+    });
+  });
+
+  group('Subtract Test', () {
+    testWidgets('72 - 2 = 70', (WidgetTester tester) async {
+      await _openCalculator(tester);
+
+      final btnCalculator_2 = find.widgetWithText(CalculatorButtonWidget, '2');
+      final btnCalculator_7 = find.widgetWithText(CalculatorButtonWidget, '7');
+      final btnCalculatorSubtract =
+          find.widgetWithText(CalculatorButtonWidget, '-');
+      final btnCalculatorEqual =
+          find.widgetWithText(CalculatorButtonWidget, '=');
+
+      final txtResult = find.descendant(
+          of: find.byKey(const Key('txtResult')), matching: find.byType(Text));
+
+      await _tap(tester, btnCalculator_7);
+      await _tap(tester, btnCalculator_2);
+      await Future.delayed(const Duration(seconds: 1));
+      await _tap(tester, btnCalculatorSubtract);
+      await _tap(tester, btnCalculator_2);
+      await Future.delayed(const Duration(seconds: 1));
+      await _tap(tester, btnCalculatorEqual);
+      await Future.delayed(const Duration(seconds: 1));
+      await tester.pump();
+
+      var txtResultText = txtResult.evaluate().single.widget as Text;
+      expect(txtResultText.data, '70');
+
+      await Future.delayed(const Duration(seconds: 1));
+    });
   });
 }

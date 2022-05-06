@@ -10,11 +10,11 @@ class HomeViewModel {
   double calculator() {
     switch (operator) {
       case OperatorEnum.add:
-        return number1 + number2;
+        return number2 + number1;
       case OperatorEnum.subtract:
-        return number1 - number2;
+        return number2 - number1;
       case OperatorEnum.multiply:
-        return number1 * number2;
+        return number2 * number1;
       case OperatorEnum.divide:
         return number2 / number1;
       default:
