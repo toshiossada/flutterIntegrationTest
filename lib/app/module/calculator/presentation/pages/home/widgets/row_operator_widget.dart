@@ -15,7 +15,6 @@ class RowOperatorWidget extends StatelessWidget {
     return GridView.count(
       crossAxisCount: 4,
       shrinkWrap: true,
-      childAspectRatio: 5,
       children: [
         CalculatorButtonWidget(
           key: const Key('btnCalculator_add'),
