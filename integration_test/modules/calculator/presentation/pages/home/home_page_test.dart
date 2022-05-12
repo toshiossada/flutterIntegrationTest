@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
 import 'package:intergration_test/app/module/calculator/presentation/pages/home/home_page.dart';
 import 'package:intergration_test/app/module/calculator/presentation/pages/home/widgets/calculator_button_widget.dart';
 import 'package:intergration_test/main.dart' as app;
 
 void main() {
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized;
-
   _tap(WidgetTester tester, Finder btn) async {
     await tester.dragUntilVisible(
       btn,
@@ -135,18 +132,13 @@ void main() {
 
       await _tap(tester, btnCalculator_7);
       await _tap(tester, btnCalculator_2);
-      await Future.delayed(const Duration(seconds: 1));
       await _tap(tester, btnCalculatorSubtract);
       await _tap(tester, btnCalculator_2);
-      await Future.delayed(const Duration(seconds: 1));
       await _tap(tester, btnCalculatorEqual);
-      await Future.delayed(const Duration(seconds: 1));
       await tester.pump();
 
       var txtResultText = txtResult.evaluate().single.widget as Text;
       expect(txtResultText.data, '70');
-
-      await Future.delayed(const Duration(seconds: 1));
     });
   });
 }

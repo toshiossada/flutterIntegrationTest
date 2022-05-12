@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
 import 'package:intergration_test/app/module/home/presentation/pages/home/home_page.dart';
 import 'package:intergration_test/main.dart' as app;
 
 void main() {
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized;
-
-  testWidgets('''
+  testWidgets(
+      '''
     Given Application Started 
     When I input text 'Toshi'
     Then I should see the welcome message 'Olá Toshi'
-    ''', (WidgetTester tester) async {
+    ''',
+      (WidgetTester tester) async {
     // Build our app and trigger a frame.
     app.main();
     await tester.pumpAndSettle();
@@ -21,10 +20,10 @@ void main() {
     final lblWelcome = find.byKey(const Key('lblWelcome'));
     expect(txtName, findsOneWidget);
     expect(find.text("Olá Toshi"), findsNothing);
-
+    await Future.delayed(const Duration(seconds: 1));
     await tester.enterText(txtName, 'Toshi');
     await tester.pumpAndSettle();
-
+    await Future.delayed(const Duration(seconds: 1));
     await tester.ensureVisible(lblWelcome);
     expect(find.text("Olá Toshi"), findsOneWidget);
   });
