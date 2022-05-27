@@ -2,12 +2,12 @@ flutter clean
 flutter pub get
 
 pushd android
+# flutter build generates files in android/ for building the app
 flutter build apk
 ./gradlew app:assembleAndroidTest
-# ./gradlew app:assembleDebug -Ptarget=integration_test/modules/home/presentation/pages/home/home_page_test.dart
 ./gradlew app:assembleDebug -Ptarget=integration_test/app_test.dart
-
 popd
+
 
 
 gcloud firebase test android run --type instrumentation \
@@ -15,7 +15,5 @@ gcloud firebase test android run --type instrumentation \
 --test build/app/outputs/apk/androidTest/debug/app-debug-androidTest.apk \
 --device-ids=Pixel2 \
 --os-version-ids=29 \
---orientations=portrait \
---use-orchestrator \
 --results-bucket=gs://toshiossada-c388e.appspot.com \
 --results-dir=tests/firebase

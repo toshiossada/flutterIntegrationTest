@@ -6,6 +6,7 @@ import 'package:intergration_test/app/module/home/home_module.dart';
 import 'package:intergration_test/app/module/home/presentation/pages/home/home_page.dart';
 import 'package:mockito/annotations.dart';
 import 'package:modular_test/modular_test.dart';
+import 'package:golden_toolkit/golden_toolkit.dart';
 
 import '../../../../../../utils/testable_widget.dart';
 import 'home_page_test.mocks.dart';
@@ -22,7 +23,11 @@ void main() {
     Modular.navigatorDelegate = _navigatorMock;
   });
 
-  testWidgets('Olá Toshi', (WidgetTester tester) async {
+  testWidgets('''
+    Dado a tela o acesso a tela Home vazia
+    Quando eu digitar Toshi no inputText
+    Então deve ser exibir a mensagem Olá Toshi
+    ''', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(testableWidget(const HomePage()));
     final txtName = find.byKey(const Key('txtName'));
@@ -38,4 +43,6 @@ void main() {
     await tester.ensureVisible(lblWelcome);
     expect(find.text("Olá Toshi"), findsOneWidget);
   });
+
+  //GOLDEN TESTS
 }
