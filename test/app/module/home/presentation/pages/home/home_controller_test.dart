@@ -10,16 +10,27 @@ void main() {
     _controller = HomeController(store: _store);
   });
 
+  tearDown(() {
+    _controller.store.name.value = '';
+  });
+
+  tearDownAll(() {
+    _controller.store.name.value = '';
+  });
+
   group('HomeController', () {
     test('name deve inicializar vazio', () {
       expect(_controller.store.name.value.isEmpty, true);
     });
 
     test('name deve inicializar vazio', () {
+      //arrange
       const name = 'Toshi';
-      expect(_controller.store.name.value.isEmpty, true);
+
+      //act
       _controller.changeName(name);
 
+      //assert
       expect(_controller.store.name.value.isNotEmpty, true);
       expect(_controller.store.name.value, name);
     });

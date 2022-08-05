@@ -8,6 +8,8 @@ class HomeController {
 
   HomeController({required this.store});
 
+
+
   setNumber(String v) {
     if (!pressed) {
       pressed = true;

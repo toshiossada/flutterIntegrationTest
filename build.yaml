@@ -3,4 +3,10 @@ targets:
     builders:
       mockito:
         generate_for:
-          - "test/**_test.dart"
+          - 'test/**_test.dart'
+    sources:
+      - lib/**
+      - pubspec.*
+      - $package$
+      # Allows the code generator to target files outside of the lib folder
+      - integration_test/**.dart

@@ -1,12 +1,12 @@
 name: intergration_test
 description: A new Flutter project.
 
-publish_to: "none"
+publish_to: 'none'
 
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: '>=2.16.2 <3.0.0'
 
 dependencies:
   flutter:
@@ -20,11 +20,12 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
+  flutter_gherkin: ^3.0.0-rc.17
+  build_runner: ^2.1.10
 
   flutter_lints: ^1.0.0
   modular_test: ^2.0.0
   mockito: ^5.1.0
-  build_runner: ^2.1.10
   golden_toolkit: ^0.13.0
 
 flutter:
