@@ -11,7 +11,7 @@ Feature: Calculator
     And I press number 8
     And I press operation '='
     Then I expect result '41'
-    
+
   @debug
   Scenario: 52 * 10 = 520
     Given I open calculator
@@ -23,3 +23,4 @@ Feature: Calculator
     And I press number 0
     And I press operation '='
     Then I expect result '520'
+
