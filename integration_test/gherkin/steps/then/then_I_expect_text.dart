@@ -5,7 +5,7 @@ import 'package:gherkin/gherkin.dart';
 
 StepDefinitionGeneric thenIExpectTheText() {
   return then1<String, FlutterWorld>(
-    'I expect the text {string}',
+    'Espero o texto {string}',
     (text, context) async {
       await context.world.appDriver.waitForAppToSettle();
 

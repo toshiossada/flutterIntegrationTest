@@ -3,7 +3,7 @@ import 'package:gherkin/gherkin.dart';
 
 StepDefinitionGeneric givenITypeText() {
   return given1<String, FlutterWorld>(
-    'I type {string}',
+    'que escrevo {string}',
     (value, context) async {
       final finder = context.world.appDriver.findBy('txtName', FindType.key);
       await context.world.appDriver.enterText(

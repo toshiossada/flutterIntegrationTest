@@ -29,22 +29,22 @@ class _CustomGherkinIntegrationTestRunner extends GherkinIntegrationTestRunner {
 
   void testFeature0() {
     runFeature(
-      name: 'Typing:',
-      tags: <String>['@tag'],
+      name: 'Home:',
+      tags: <String>[],
       run: () {
         runScenario(
-          name: 'User write name',
+          name: 'Usuário escreve nome na tela',
           description: null,
           path:
               'C:\\projetos\\flutter\\intergration_test\\.\\integration_test\\features\\1_home.feature',
-          tags: <String>['@tag', '@debug'],
+          tags: <String>[],
           steps: [
             (
               TestDependencies dependencies,
               bool skip,
             ) async {
               return await runStep(
-                name: 'Given I type \'Toshi Ossada\'',
+                name: 'Dado que escrevo \'Toshi Ossada\'',
                 multiLineStrings: <String>[],
                 table: null,
                 dependencies: dependencies,
@@ -56,7 +56,7 @@ class _CustomGherkinIntegrationTestRunner extends GherkinIntegrationTestRunner {
               bool skip,
             ) async {
               return await runStep(
-                name: 'When I stop tapping',
+                name: 'Quando paro de escrever',
                 multiLineStrings: <String>[],
                 table: null,
                 dependencies: dependencies,
@@ -68,7 +68,7 @@ class _CustomGherkinIntegrationTestRunner extends GherkinIntegrationTestRunner {
               bool skip,
             ) async {
               return await runStep(
-                name: 'Then I expect the text "Olá Toshi Ossada"',
+                name: 'Então Espero o texto "Olá Toshi Ossada"',
                 multiLineStrings: <String>[],
                 table: null,
                 dependencies: dependencies,
@@ -77,18 +77,18 @@ class _CustomGherkinIntegrationTestRunner extends GherkinIntegrationTestRunner {
             },
           ],
           onBefore: () async => onBeforeRunFeature(
-            name: 'Typing',
+            name: 'Home',
             path:
                 'C:\\projetos\\flutter\\intergration_test\\.\\integration_test\\features\\1_home.feature',
             description: null,
-            tags: <String>['@tag'],
+            tags: <String>[],
           ),
           onAfter: () async => onAfterRunFeature(
-            name: 'Typing',
+            name: 'Home',
             path:
                 'C:\\projetos\\flutter\\intergration_test\\.\\integration_test\\features\\1_home.feature',
             description: null,
-            tags: <String>['@tag'],
+            tags: <String>[],
           ),
         );
       },

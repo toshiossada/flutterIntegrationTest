@@ -1,8 +1,7 @@
-@tag
-Feature: Typing
+# language: pt
+Funcionalidade: Home
 
-  @debug
-  Scenario: User write name
-    Given I type 'Toshi Ossada'
-    When I stop tapping
-    Then I expect the text "Olá Toshi Ossada"
+  Cenário: Usuário escreve nome na tela
+    Dado que escrevo "Toshi Ossada"
+    Quando paro de escrever
+    Então Espero o texto "Olá Toshi Ossada"
